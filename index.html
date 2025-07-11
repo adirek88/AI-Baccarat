@@ -13,7 +13,7 @@
     }
     .container {
       max-width: 440px;
-      margin: 28px auto 28px auto;
+      margin: 22px auto 22px auto;
       background: #fff;
       border-radius: 26px;
       box-shadow: 0 8px 32px #aee9ff29;
@@ -24,26 +24,51 @@
       text-align: center;
       color: #1580c8;
       margin: 0 0 14px 0;
-      font-size: 1.5em;
+      font-size: 1.45em;
       font-weight: bold;
       letter-spacing: 1.5px;
       padding: 7px 0 2px 0;
       line-height: 1.3;
     }
+    .mode-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      margin-top: 7px;
+    }
+    .mode-btn {
+      font-size: 1.04em;
+      border-radius: 14px;
+      border: 2px solid #c7eaff;
+      background: #f8fcff;
+      color: #1580c8;
+      font-weight: bold;
+      padding: 7px 17px;
+      cursor: pointer;
+      transition: all 0.12s;
+      outline: none;
+    }
+    .mode-btn.selected {
+      background: #15d98a;
+      color: #fff;
+      border: 2.5px solid #15b871;
+      box-shadow: 0 3px 14px #adffe05f;
+    }
     .input-row {
       display: flex;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       margin-top: 5px;
     }
     .input-row button {
-      font-size: 1.17rem;
+      font-size: 1.15rem;
       font-weight: bold;
       border: none;
       border-radius: 17px;
       cursor: pointer;
-      padding: 11px 31px;
+      padding: 11px 30px;
       margin-bottom: 2px;
       box-shadow: 0 2px 10px #b8e6fb16;
       transition: all 0.13s;
@@ -56,24 +81,24 @@
     .input-row .del {background: #ffe7d5; color: #a75a00; border: 2.5px solid #ffd8b5;}
     .input-row .reset {background: #d5ffe6; color: #23a70b; border: 2.5px solid #bbf3ce;}
     .pattern-select {
-      font-size: 1.09rem; padding:7px 15px;
-      border-radius:11px;
+      font-size: 1.07rem; padding:7px 14px;
+      border-radius:10px;
       border:1.5px solid #b7e6ff;
       background: #f8fcff;
       margin-left: 7px;
     }
     section {
-      margin-bottom: 21px;
+      margin-bottom: 19px;
       border-radius: 16px;
       background: #f3f9ff;
       box-shadow: 0 1.5px 10px #b8e6fb10;
       padding: 13px 8px 14px 8px;
     }
     .sec-title {
-      font-size: 1.12em;
+      font-size: 1.09em;
       color: #1477b6;
       font-weight: bold;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       letter-spacing: 0.4px;
       display: flex;
       align-items: center;
@@ -81,15 +106,15 @@
       border-left: 5px solid #61d0ff;
       padding-left: 9px;
       background: #e6f3ff;
-      border-radius: 8px 8px 8px 8px;
-      margin-bottom: 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
     }
     .classic-scroll {
-      max-height: 340px;
+      max-height: 320px;
       overflow-y: auto;
-      border-radius: 11px;
+      border-radius: 10px;
       background: #f8fcff;
-      box-shadow: 0 0.5px 7px #b8e6fb09;
+      box-shadow: 0 0.5px 7px #b8e6fb08;
       margin-bottom: 0px;
     }
     table {
@@ -98,25 +123,25 @@
       background: #fcfdff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0.5px 7px #b8e6fb08;
+      box-shadow: 0 0.5px 7px #b8e6fb07;
       margin: 0;
     }
     th, td {
       padding: 7px 8px;
       text-align: center;
       border: 1px solid #d1eaff;
-      font-size: 1.05rem;
+      font-size: 1.04rem;
     }
     th {
       background: #daf1ff;
       color: #2c5183;
       font-weight: bold;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.1px;
     }
     .circle-b, .circle-p, .circle-null {
       display: inline-block; width: 32px; height: 32px;
       line-height: 32px; border-radius: 50%;
-      font-weight: bold; font-size: 1.13em;
+      font-weight: bold; font-size: 1.12em;
       box-shadow: 0 1.5px 7px #ddebf8b5; border: 2.5px solid transparent;
     }
     .circle-b { background: #ffdde0; color: #d6002a; border-color: #fca4b6; }
@@ -127,31 +152,33 @@
     .cell-plus {color:#1eab48;font-weight:bold;}
     .cell-minus {color:#e93030;font-weight:bold;}
     .predict-now {background:#d2ffd9;color:#16934a;font-weight:bold;}
-    .sugBox {margin:10px 0 4px 0;font-size:1.08em;text-align:center;font-weight:bold;}
+    .sugBox {margin:10px 0 4px 0;font-size:1.07em;text-align:center;font-weight:bold;}
     .good {color:#229900;}
     .bad {color:#d40000;}
     .mid {color:#cc8800;}
     .Bbet {background:#ffdde0;color:#d6002a;padding:2px 11px;border-radius:7px;}
     .Pbet {background:#d6eaff;color:#1470c6;padding:2px 11px;border-radius:7px;}
-    .tag {font-weight:600; padding:2px 10px; border-radius:9px; font-size:0.96em;}
+    .tag {font-weight:600; padding:2px 10px; border-radius:9px; font-size:0.95em;}
     .tag-good {background:#edffe2;color:#148d11;}
     .tag-bad {background:#fff5d7;color:#ce8a14;}
     .tag-hot {background:#ffe56d;color:#917a00;}
     .box-qual {
       margin-bottom:10px; border-radius:16px; padding:14px 10px;
       border:2px solid #aaf4d8; background:#f7fff7; text-align:center;
-      font-size:1.11em;
+      font-size:1.10em;
     }
     .box-qual.good {background:#ebfff0; color:#14a149; border:2px solid #7ee6af;}
     .box-qual.bad {background:#fffbe6; color:#bb8900; border:2px solid #ffe399;}
-    .box-qual .icon {font-size:1.36em;vertical-align:-4px;}
+    .box-qual .icon {font-size:1.34em;vertical-align:-4px;}
     @media (max-width: 560px){
       .container{max-width:99vw;}
-      th,td{font-size:0.97rem;}
+      th,td{font-size:0.96rem;}
       .input-row button{padding: 10px 13px;font-size:1em;}
-      .circle-b,.circle-p,.circle-null{width:27px;height:27px;line-height:27px;font-size:1em;}
-      .classic-scroll{max-height:250px;}
-      .sec-title{font-size:1.03em;}
+      .circle-b,.circle-p,.circle-null{width:26px;height:26px;line-height:26px;font-size:1em;}
+      .classic-scroll{max-height:200px;}
+      .sec-title{font-size:0.98em;}
+      .mode-row{gap:5px;}
+      .mode-btn{font-size:0.97em;padding:6px 9px;}
     }
     #qualityMsg {margin-bottom: 8px;}
     #sugBestTop {margin-bottom:13px;}
@@ -160,6 +187,11 @@
 <body>
 <div class="container">
   <div class="header">AI Baccarat<br>All-in-One <span style="font-size:0.7em; font-weight:500;">(Classic + ชุดน่าเล่น + AI แนะนำ)</span></div>
+  <div class="mode-row">
+    <button class="mode-btn selected" id="mode1" onclick="setMode(1)">Pattern แม่นสุดเท่านั้น</button>
+    <button class="mode-btn" id="mode2" onclick="setMode(2)">คัด 2 ชุด</button>
+    <button class="mode-btn" id="mode3" onclick="setMode(3)">คัด 3 ชุด</button>
+  </div>
   <div class="input-row">
     <button class="B" onclick="addResult('B')">B</button>
     <button class="P" onclick="addResult('P')">P</button>
@@ -184,6 +216,7 @@
 <script>
 let results = [];
 let userSelectedN = null;
+let mode = 1; // 1=แม่นสุด, 2=คัด2ชุด, 3=คัด3ชุด
 
 window.onload = function(){
   let sel = document.getElementById('patN');
@@ -199,6 +232,17 @@ window.onload = function(){
   });
   renderAll();
 };
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('mode1').classList.remove('selected');
+  document.getElementById('mode2').classList.remove('selected');
+  document.getElementById('mode3').classList.remove('selected');
+  document.getElementById('mode'+m).classList.add('selected');
+  userSelectedN = null;
+  renderAll();
+}
+function getMode() { return mode; }
 
 function getPatternN() {
   let sel = document.getElementById('patN');
@@ -335,7 +379,7 @@ function renderSuggestTable() {
     let tag = "";
     if(info.good) tag = `<span class="tag tag-good">ชุดน่าตาม</span>`;
     if(info.bad) tag = `<span class="tag tag-bad">ชุดน่าสวน</span>`;
-    if(info.hot) tag = `<span class="tag tag-hot">HOT!</span>`;
+    if(info.hot) tag += `<span class="tag tag-hot">HOT!</span>`;
     suggestHTML += `<tr${info.hot?' style="background:#fffbe2"':''}>
       <td>${info.size}</td>
       <td class="${info.percent>=60?'cell-plus':'cell-minus'}">${info.percent}%</td>
@@ -349,86 +393,60 @@ function renderSuggestTable() {
   document.getElementById('sugTable').innerHTML = suggestHTML;
 }
 
+// ----------- LOGIC ใหม่ เลือกตาม HOT! ตามโหมด ------------
+function isPlayableHot() {
+  if (results.length < 10) return false; // <<< เพิ่มเช็คนี้
+  let hotCount = 0;
+  for (let size = 1; size <= 11; size++) {
+    let info = analyzeSet(size);
+    if (!info) continue;
+    if (info.hot) hotCount++;
+  }
+  if (mode === 1) return hotCount >= 1;
+  if (mode === 2) return hotCount >= 2;
+  if (mode === 3) return hotCount >= 3;
+  return false;
+}
+
 function bestSuggest() {
-  if (!isPlayable()) return "";
-  let bestList = [];
-  let maxPercent = 0;
+  if (results.length < 10) return ""; // <<< เพิ่มเช็คนี้ (กันไว้ชัวร์)
+  if (!isPlayableHot()) return "";
+  let hotList = [];
   for (let size = 1; size <= 11; size++) {
     let info = analyzeSet(size);
     if (!info) continue;
-    if (info.percent >= 60 && info.maxLose < 3) {
-      if (info.percent > maxPercent) maxPercent = info.percent;
+    if (info.good) {
+      hotList.push({size, type: 'ตาม', side: getSide(size, false), percent: info.percent, lose: info.maxLose});
     }
-    if (info.percentAnti >= 60 && info.maxLoseAnti < 3) {
-      if (info.percentAnti > maxPercent) maxPercent = info.percentAnti;
-    }
-  }
-  for (let size = 1; size <= 11; size++) {
-    let info = analyzeSet(size);
-    if (!info) continue;
-    if (info.percent === maxPercent && info.percent >= 60 && info.maxLose < 3) {
-      let side = '';
-      if(results.length >= size)
-      {
-        let idx = (results.length - size) % size;
-        if(idx < 0) idx += size;
-        if (results[idx] !== undefined) side = results[idx];
-      }
-      bestList.push({ size, type: 'ตาม', side, percent: info.percent, lose: info.maxLose });
-    }
-    if (info.percentAnti === maxPercent && info.percentAnti >= 60 && info.maxLoseAnti < 3) {
-      let side = '';
-      if(results.length >= size)
-      {
-        let idx = (results.length - size) % size;
-        if(idx < 0) idx += size;
-        if (results[idx] !== undefined) side = (results[idx] === 'B' ? 'P' : 'B');
-      }
-      bestList.push({ size, type: 'สวน', side, percent: info.percentAnti, lose: info.maxLoseAnti });
+    if (info.bad) {
+      hotList.push({size, type: 'สวน', side: getSide(size, true), percent: info.percentAnti, lose: info.maxLoseAnti});
     }
   }
-  if (bestList.length > 1) {
-    let conflictPairs = [];
-    for (let i = 0; i < bestList.length; i++) {
-      for (let j = i + 1; j < bestList.length; j++) {
-        if (bestList[i].side !== bestList[j].side && bestList[i].side && bestList[j].side) {
-          conflictPairs.push([bestList[i], bestList[j]]);
-        }
-      }
-    }
-    if (conflictPairs.length > 0) {
-      let setTxt = conflictPairs.map(p => `ชุด ${p[0].size} (${p[0].side}) และ ชุด ${p[1].size} (${p[1].side})`).join(', ');
-      return `<span class="mid">พบชุด % แม่นเท่ากันแต่ตัวแทงขัดกัน<br>
-        <b>รอจังหวะเหมาะสม</b> (${setTxt})</span>`;
-    } else {
-      bestList.sort((a, b) => (a.lose - b.lose) || (a.size - b.size));
-      let best = bestList[0];
-      let betBtn = `<span class="${best.side == 'B' ? 'Bbet' : 'Pbet'}">${best.side}</span>`;
-      let detail = (best.type == 'ตาม')
-        ? `ถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`
-        : `สวนถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`;
-      let extra = (bestList.length > 1)
-        ? `<br><span style="color:#bb8500;font-size:0.97em">(พบ % แม่นเท่ากันมากกว่า 1 ชุด แนะนำเลือกขนาดชุดที่แพ้ติดน้อยสุด)</span>` : '';
-      autoSelectPatternN(best.size);
-      return `
-        <span class="good">แนะนำ: <b>ชุด${best.size}ตา</b> <u>${best.type == 'ตาม' ? 'ตามสูตร' : 'สวนสูตร'}</u> แทง${betBtn}</span><br>
-        <span class="mid" style="font-size:0.98em">${detail}${extra}</span>
-      `;
+  hotList.sort((a, b) => b.percent - a.percent || a.lose - b.lose || a.size - b.size);
+  let best = hotList[0];
+  let betBtn = `<span class="${best.side == 'B' ? 'Bbet' : 'Pbet'}">${best.side}</span>`;
+  let detail = (best.type == 'ตาม')
+    ? `ถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`
+    : `สวนถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`;
+  autoSelectPatternN(best.size);
+  return `
+    <span class="good">แนะนำ: <b>ชุด${best.size}ตา</b> <u>${best.type == 'ตาม' ? 'ตามสูตร' : 'สวนสูตร'}</u> แทง${betBtn}</span><br>
+    <span class="mid" style="font-size:0.98em">${detail}</span>
+  `;
+}
+// ------------------------------------------------------------
+
+function getSide(size, anti) {
+  let side = '';
+  if(results.length >= size) {
+    let idx = (results.length - size) % size;
+    if(idx < 0) idx += size;
+    if (results[idx] !== undefined) {
+      if(anti) side = (results[idx] === 'B' ? 'P' : 'B');
+      else side = results[idx];
     }
   }
-  if (bestList.length === 1) {
-    let best = bestList[0];
-    let betBtn = `<span class="${best.side == 'B' ? 'Bbet' : 'Pbet'}">${best.side}</span>`;
-    let detail = (best.type == 'ตาม')
-      ? `ถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`
-      : `สวนถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`;
-    autoSelectPatternN(best.size);
-    return `
-      <span class="good">แนะนำ: <b>ชุด${best.size}ตา</b> <u>${best.type == 'ตาม' ? 'ตามสูตร' : 'สวนสูตร'}</u> แทง${betBtn}</span><br>
-      <span class="mid" style="font-size:0.98em">${detail}</span>
-    `;
-  }
-  return "";
+  return side;
 }
 
 function renderBest() {
