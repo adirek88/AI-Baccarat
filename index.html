@@ -2,150 +2,63 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>AI Baccarat All-in-One</title>
+  <title>AI Baccarat & Hybrid Money Management</title>
   <meta name="viewport" content="width=480, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Sarabun', sans-serif;
-      background: linear-gradient(135deg, #e6f7ff 0%, #f9fcff 100%);
-      margin: 0; min-height: 100vh;
-    }
-    .container {
-      max-width: 440px;
-      margin: 22px auto 22px auto;
-      background: #fff;
-      border-radius: 26px;
-      box-shadow: 0 8px 32px #aee9ff29;
-      padding: 20px 10px 22px 10px;
-      border: 1.5px solid #e1f5ff;
-    }
-    .header {
-      text-align: center;
-      color: #1580c8;
-      margin: 0 0 14px 0;
-      font-size: 1.45em;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      padding: 7px 0 2px 0;
-      line-height: 1.3;
-    }
-    .mode-row {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 14px;
-      margin-top: 7px;
-    }
-    .mode-btn {
-      font-size: 1.04em;
-      border-radius: 14px;
-      border: 2px solid #c7eaff;
-      background: #f8fcff;
-      color: #1580c8;
-      font-weight: bold;
-      padding: 7px 17px;
-      cursor: pointer;
-      transition: all 0.12s;
-      outline: none;
-    }
-    .mode-btn.selected {
-      background: #15d98a;
-      color: #fff;
-      border: 2.5px solid #15b871;
-      box-shadow: 0 3px 14px #adffe05f;
-    }
-    .input-row {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 14px;
-      margin-top: 5px;
-    }
-    .input-row button {
-      font-size: 1.15rem;
+    body { font-family: 'Sarabun', sans-serif; background: linear-gradient(135deg, #e6f7ff 0%, #f9fcff 100%); margin: 0; min-height: 100vh;}
+    .container { max-width: 440px; margin: 24px auto 30px auto; background: #fff; border-radius: 24px; box-shadow: 0 8px 32px #aee9ff29; padding: 12px 8px 22px 8px; border: 1.5px solid #e1f5ff;}
+    .tab-row { display: flex; gap: 0; margin-bottom: 16px; }
+    .tab-btn {
+      flex: 1;
+      font-size: 1.11em;
       font-weight: bold;
       border: none;
-      border-radius: 17px;
+      border-bottom: 4px solid #d4f0ff;
+      background: #f2fbff;
+      color: #1896d7;
+      padding: 12px 0 10px 0;
       cursor: pointer;
-      padding: 11px 30px;
-      margin-bottom: 2px;
-      box-shadow: 0 2px 10px #b8e6fb16;
       transition: all 0.13s;
+      border-radius: 13px 13px 0 0;
       outline: none;
     }
-    .input-row .B { background: #ffdde0; color: #d6002a; border: 2.5px solid #fca4b6; }
+    .tab-btn.selected {
+      background: #15d98a;
+      color: #fff;
+      border-bottom: 4px solid #0ac275;
+      z-index: 2;
+      box-shadow: 0 4px 12px #72ffd62a;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    @media (max-width: 560px){
+      .container{max-width:99vw;}
+      .tab-btn{font-size:1em;padding:10px 0;}
+    }
+    /* สูตรบาคาร่า AI */
+    .header { text-align: center; color: #1580c8; margin: 0 0 14px 0; font-size: 1.35em; font-weight: bold; letter-spacing: 1.5px; padding: 7px 0 2px 0; line-height: 1.3;}
+    .mode-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; margin-top: 7px;}
+    .mode-btn { font-size: 1.04em; border-radius: 14px; border: 2px solid #c7eaff; background: #f8fcff; color: #1580c8; font-weight: bold; padding: 7px 17px; cursor: pointer; transition: all 0.12s; outline: none;}
+    .mode-btn.selected { background: #15d98a; color: #fff; border: 2.5px solid #15b871; box-shadow: 0 3px 14px #adffe05f;}
+    .input-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 14px; margin-top: 5px;}
+    .input-row button { font-size: 1.15rem; font-weight: bold; border: none; border-radius: 17px; cursor: pointer; padding: 11px 30px; margin-bottom: 2px; box-shadow: 0 2px 10px #b8e6fb16; transition: all 0.13s; outline: none;}
+    .input-row .B { background: #ffdde0; color: #d6002a; border: 2.5px solid #fca4b6;}
     .input-row .B:active { background: #ffb4c2;}
     .input-row .P { background: #d6eaff; color: #1470c6; border: 2.5px solid #81b8ec;}
     .input-row .P:active { background: #b1d2ff;}
     .input-row .del {background: #ffe7d5; color: #a75a00; border: 2.5px solid #ffd8b5;}
     .input-row .reset {background: #d5ffe6; color: #23a70b; border: 2.5px solid #bbf3ce;}
-    .pattern-select {
-      font-size: 1.07rem; padding:7px 14px;
-      border-radius:10px;
-      border:1.5px solid #b7e6ff;
-      background: #f8fcff;
-      margin-left: 7px;
-    }
-    section {
-      margin-bottom: 19px;
-      border-radius: 16px;
-      background: #f3f9ff;
-      box-shadow: 0 1.5px 10px #b8e6fb10;
-      padding: 13px 8px 14px 8px;
-    }
-    .sec-title {
-      font-size: 1.09em;
-      color: #1477b6;
-      font-weight: bold;
-      margin-bottom: 5px;
-      letter-spacing: 0.4px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-left: 5px solid #61d0ff;
-      padding-left: 9px;
-      background: #e6f3ff;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-    .classic-scroll {
-      max-height: 320px;
-      overflow-y: auto;
-      border-radius: 10px;
-      background: #f8fcff;
-      box-shadow: 0 0.5px 7px #b8e6fb08;
-      margin-bottom: 0px;
-    }
-    table {
-      border-collapse:collapse;
-      width:100%;
-      background: #fcfdff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0.5px 7px #b8e6fb07;
-      margin: 0;
-    }
-    th, td {
-      padding: 7px 8px;
-      text-align: center;
-      border: 1px solid #d1eaff;
-      font-size: 1.04rem;
-    }
-    th {
-      background: #daf1ff;
-      color: #2c5183;
-      font-weight: bold;
-      letter-spacing: 0.1px;
-    }
-    .circle-b, .circle-p, .circle-null {
-      display: inline-block; width: 32px; height: 32px;
-      line-height: 32px; border-radius: 50%;
-      font-weight: bold; font-size: 1.12em;
-      box-shadow: 0 1.5px 7px #ddebf8b5; border: 2.5px solid transparent;
-    }
-    .circle-b { background: #ffdde0; color: #d6002a; border-color: #fca4b6; }
-    .circle-p { background: #d6eaff; color: #1470c6; border-color: #81b8ec; }
+    .pattern-select { font-size: 1.07rem; padding:7px 14px; border-radius:10px; border:1.5px solid #b7e6ff; background: #f8fcff; margin-left: 7px;}
+    section { margin-bottom: 19px; border-radius: 16px; background: #f3f9ff; box-shadow: 0 1.5px 10px #b8e6fb10; padding: 13px 8px 14px 8px;}
+    .sec-title { font-size: 1.09em; color: #1477b6; font-weight: bold; margin-bottom: 5px; letter-spacing: 0.4px; display: flex; align-items: center; gap: 10px; border-left: 5px solid #61d0ff; padding-left: 9px; background: #e6f3ff; border-radius: 8px; margin-bottom: 12px;}
+    .classic-scroll { max-height: 320px; overflow-y: auto; border-radius: 10px; background: #f8fcff; box-shadow: 0 0.5px 7px #b8e6fb08; margin-bottom: 0px;}
+    table { border-collapse:collapse; width:100%; background: #fcfdff; border-radius: 12px; overflow: hidden; box-shadow: 0 0.5px 7px #b8e6fb07; margin: 0;}
+    th, td { padding: 7px 8px; text-align: center; border: 1px solid #d1eaff; font-size: 1.04rem;}
+    th { background: #daf1ff; color: #2c5183; font-weight: bold; letter-spacing: 0.1px;}
+    .circle-b, .circle-p, .circle-null { display: inline-block; width: 32px; height: 32px; line-height: 32px; border-radius: 50%; font-weight: bold; font-size: 1.12em; box-shadow: 0 1.5px 7px #ddebf8b5; border: 2.5px solid transparent;}
+    .circle-b { background: #ffdde0; color: #d6002a; border-color: #fca4b6;}
+    .circle-p { background: #d6eaff; color: #1470c6; border-color: #81b8ec;}
     .circle-null { background: #f1f8ff; color: #bbb; border-color: #d7e9ff;}
     .latest { box-shadow: 0 0 0 4px #2fa5ff54, 0 2px 18px #69c0ff52 !important; border: 2.5px solid #1e90ff; }
     .row-next { background: #f6ffe6;}
@@ -162,318 +75,709 @@
     .tag-good {background:#edffe2;color:#148d11;}
     .tag-bad {background:#fff5d7;color:#ce8a14;}
     .tag-hot {background:#ffe56d;color:#917a00;}
-    .box-qual {
-      margin-bottom:10px; border-radius:16px; padding:14px 10px;
-      border:2px solid #aaf4d8; background:#f7fff7; text-align:center;
-      font-size:1.10em;
-    }
+    .box-qual { margin-bottom:10px; border-radius:16px; padding:14px 10px; border:2px solid #aaf4d8; background:#f7fff7; text-align:center; font-size:1.10em;}
     .box-qual.good {background:#ebfff0; color:#14a149; border:2px solid #7ee6af;}
     .box-qual.bad {background:#fffbe6; color:#bb8900; border:2px solid #ffe399;}
     .box-qual .icon {font-size:1.34em;vertical-align:-4px;}
-    @media (max-width: 560px){
-      .container{max-width:99vw;}
-      th,td{font-size:0.96rem;}
-      .input-row button{padding: 10px 13px;font-size:1em;}
-      .circle-b,.circle-p,.circle-null{width:26px;height:26px;line-height:26px;font-size:1em;}
-      .classic-scroll{max-height:200px;}
-      .sec-title{font-size:0.98em;}
-      .mode-row{gap:5px;}
-      .mode-btn{font-size:0.97em;padding:6px 9px;}
-    }
     #qualityMsg {margin-bottom: 8px;}
     #sugBestTop {margin-bottom:13px;}
+    /* สูตรเดินเงิน Hybrid */
+    h2 { font-size: 1.15rem; margin: 18px 0 7px 0; color: #1c348e; font-weight: bold;}
+    .desc { background: #e8f0ff; border-left: 4px solid #377aff; border-radius: 11px; padding: 8px 14px; margin-bottom: 16px; font-size: 1rem; color: #215fd6;}
+    .info {font-size:0.98rem; color:#1160c8; margin-bottom:6px; text-align:right;}
+    .section { margin-bottom: 32px;}
+    /* Accordion */
+    .setting-accordion { margin-bottom: 13px; }
+    .setting-head {
+      background: #468af9; color: #fff;
+      font-weight: bold; padding: 12px 16px 12px 16px;
+      border-radius: 12px 12px 0 0;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 1.11em;
+      user-select:none;
+      letter-spacing:0.5px;
+      transition: background 0.18s;
+    }
+    .setting-head:hover { background: #3974d6; }
+    .setting-body { padding: 0; background: #e8f2fd; border-radius: 0 0 12px 12px; }
+    .setting-body.hide { display: none; }
+    .setting-card { padding:15px 14px 9px 14px; border-radius:0 0 12px 12px; background:none; box-shadow:none; border:none; margin:0;}
+    .setting-group {display:flex; gap:10px; margin-bottom:7px;}
+    .setting-group label { flex: 0 0 82px; font-weight: bold; color:#123;}
+    .setting-group input {flex:1; padding:4px 8px; font-size:1.05rem; border-radius:7px; border:1px solid #d0dcff;}
+    .setting-btn {background: #4786ff; margin-top:10px;}
+    .modal-bg {position:fixed; left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.28);z-index:99;display:flex;align-items:center;justify-content:center;}
+    .modal-box {background:#fff;border-radius:15px;box-shadow:0 8px 28px #558cff44;min-width:240px;padding:26px 20px 16px 20px;text-align:center;}
+    .modal-box h3 {margin-bottom:12px;}
+    .modal-box button {margin-top:15px;}
+    .btn-confirm {background:#216e14;}
+    .reset-btn { background: #ec586a; margin-top: 8px; margin-bottom: 16px;}
+    .profit { font-weight: bold; color: #1e972e;}
+    .loss { font-weight: bold; color: #ce0a0a;}
+    .actions { display: flex; gap: 7px; justify-content: center;}
+    .btn { border: none; outline: none; background: #558cff; color: #fff; border-radius: 8px; padding: 3px 13px; font-size: 1rem; cursor: pointer; transition: background 0.18s;}
+    .btn:active { background: #3365d1; }
+    /* ปุ่มชนะ/แพ้ สีเฉพาะ */
+    .btn-win { background: #1bb150 !important; color: #fff !important; font-weight: bold; }
+    .btn-lose { background: #ff3a3a !important; color: #fff !important; font-weight: bold; }
+    .money-tab-chooser { display: flex; gap: 7px; margin-bottom: 13px; }
+    .money-tab-chooser .mini-btn {
+      flex:1;
+      font-size: 1em;
+      font-weight: bold;
+      background: #e4faff;
+      color: #1482c6;
+      border-radius: 11px 11px 0 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 9px 0 7px 0;
+      transition: all 0.12s;
+      border-bottom: 2.5px solid #bff3df;
+    }
+    .money-tab-chooser .mini-btn.selected {
+      background: #15d98a;
+      color: #fff;
+      border-bottom: 2.5px solid #15b871;
+      box-shadow: 0 2px 10px #a6ffe39f;
+      z-index: 2;
+    }
+    .money-tab-section { border-radius: 0 0 14px 14px; background: #f8fcff; padding: 8px 2px 1px 2px; margin-top:-1px;}
+    @media (max-width: 500px) {
+      h2 {font-size: 1rem;}
+      .setting-group label {font-size:0.95em;}
+      .setting-head {font-size:1em;}
+    }
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">AI Baccarat<br>All-in-One <span style="font-size:0.7em; font-weight:500;">(Classic + ชุดน่าเล่น + AI แนะนำ)</span></div>
-  <div class="mode-row">
-    <button class="mode-btn selected" id="mode1" onclick="setMode(1)">Pattern แม่นสุดเท่านั้น</button>
-    <button class="mode-btn" id="mode2" onclick="setMode(2)">คัด 2 ชุด</button>
-    <button class="mode-btn" id="mode3" onclick="setMode(3)">คัด 3 ชุด</button>
-  </div>
-  <div class="input-row">
-    <button class="B" onclick="addResult('B')">B</button>
-    <button class="P" onclick="addResult('P')">P</button>
-    <button class="del" onclick="removeLast()">ลบ</button>
-    <button class="reset" onclick="resetAll()">รีเซ็ต</button>
-  </div>
-  <div id="qualityMsg"></div>
-  <div id="sugBestTop" class="sugBox"></div>
-  <section>
-    <div class="sec-title">
-      Classic Pattern
-      <select id="patN" class="pattern-select" onchange="renderClassic()"></select>
-      <span style="font-size:0.97em;color:#888;">เลือกขนาดชุด</span>
+  <div class="container">
+    <!-- Tab Menu -->
+    <div class="tab-row">
+      <button class="tab-btn selected" id="tab-ai" onclick="showTab(0)">สูตรบาคาร่า AI</button>
+      <button class="tab-btn" id="tab-money" onclick="showTab(1)">สูตรเดินเงิน Hybrid</button>
     </div>
-    <div class="classic-scroll"><div id="classicBox"></div></div>
-  </section>
-  <section>
-    <div class="sec-title">AI ตารางวิเคราะห์ชุดน่าเล่น (ตาม/สวน)</div>
-    <div id="sugTable"></div>
-  </section>
-</div>
-<script>
-let results = [];
-let userSelectedN = null;
-let mode = 1; // 1=แม่นสุด, 2=คัด2ชุด, 3=คัด3ชุด
-
-window.onload = function(){
-  let sel = document.getElementById('patN');
-  for(let i=1; i<=11; i++) {
-    let opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = i + ' ตา';
-    sel.appendChild(opt);
-  }
-  sel.addEventListener('change', function() {
-    userSelectedN = sel.value;
-    renderClassic();
-  });
-  renderAll();
-};
-
-function setMode(m) {
-  mode = m;
-  document.getElementById('mode1').classList.remove('selected');
-  document.getElementById('mode2').classList.remove('selected');
-  document.getElementById('mode3').classList.remove('selected');
-  document.getElementById('mode'+m).classList.add('selected');
-  userSelectedN = null;
-  renderAll();
-}
-function getMode() { return mode; }
-
-function getPatternN() {
-  let sel = document.getElementById('patN');
-  let n = parseInt(sel.value);
-  return (isNaN(n) || n<1) ? 1 : n;
-}
-
-function isPlayable() {
-  if(results.length < 10) return false;
-  let count = 0;
-  for (let size = 1; size <= 11; size++) {
-    let info = analyzeSet(size);
-    if (!info) continue;
-    if ((info.percent >= 60 && info.maxLose < 3) || (info.percentAnti >= 60 && info.maxLoseAnti < 3)) count++;
-  }
-  return count >= 3;
-}
-function isEvaluatable() {
-  return results.length >= 10;
-}
-function evaluateQuality() {
-  if (!isEvaluatable()) {
-    return `<div class="box-qual bad"><span class="icon">✏️</span> กรุณากรอกผลอย่างน้อย 10 ตาก่อนประเมินคุณภาพขอน</div>`;
-  }
-  if (isPlayable()) {
-    return `<div class="box-qual good"><span class="icon">✅</span> ขอนนี้น่าเล่น! <b>พบ Pattern ที่แม่นยำ</b><br>เลือกเล่นเฉพาะจังหวะที่ระบบแนะนำ</div>`;
-  } else {
-    return `<div class="box-qual bad"><span class="icon">⚠️</span> ขอนนี้ไม่น่าเล่น ยังไม่พบ Pattern ที่แม่นยำ<br>แนะนำให้ข้าม/เปลี่ยนห้อง หรือรอ Pattern ที่ชัดเจนก่อน</div>`;
-  }
-}
-
-function renderClassic() {
-  let N = getPatternN();
-  let html = `<table>
-    <tr>
-      <th>No.</th>
-      <th>ผลจริง</th>
-      <th>ตัวแทง<br>(ย้อนหลัง ${N} ตา)</th>
-      <th>+/–</th>
-    </tr>`;
-  let correct = 0, total = 0;
-  for(let i=0; i<results.length; i++) {
-    let pred = '-';
-    if(i >= N) {
-      let idx = (i-N) % N;
-      if(idx < 0) idx += N;
-      if (results[idx] !== undefined) pred = results[idx];
+    <!-- Tab Content: สูตรบาคาร่า -->
+    <div class="tab-content active" id="content-ai">
+      <div class="header">AI Baccarat<br>All-in-One <span style="font-size:0.7em; font-weight:500;">(Classic + ชุดน่าเล่น + AI แนะนำ)</span></div>
+      <div class="mode-row">
+        <button class="mode-btn selected" id="mode1" onclick="setMode(1)">Pattern แม่นสุดเท่านั้น</button>
+        <button class="mode-btn" id="mode2" onclick="setMode(2)">คัด 2 ชุด</button>
+        <button class="mode-btn" id="mode3" onclick="setMode(3)">คัด 3 ชุด</button>
+      </div>
+      <div class="input-row">
+        <button class="B" onclick="addResult('B')">B</button>
+        <button class="P" onclick="addResult('P')">P</button>
+        <button class="del" onclick="removeLast()">ลบ</button>
+        <button class="reset" onclick="resetAll()">รีเซ็ต</button>
+      </div>
+      <div id="qualityMsg"></div>
+      <div id="sugBestTop" class="sugBox"></div>
+      <section>
+        <div class="sec-title">
+          Classic Pattern
+          <select id="patN" class="pattern-select" onchange="renderClassic()"></select>
+          <span style="font-size:0.97em;color:#888;">เลือกขนาดชุด</span>
+        </div>
+        <div class="classic-scroll"><div id="classicBox"></div></div>
+      </section>
+      <section>
+        <div class="sec-title">AI ตารางวิเคราะห์ชุดน่าเล่น (ตาม/สวน)</div>
+        <div id="sugTable"></div>
+      </section>
+    </div>
+    <!-- Tab Content: สูตรเดินเงิน -->
+    <div class="tab-content" id="content-money">
+      <h1 style="font-size:1.22rem; text-align:center; margin-bottom: 0;">ตารางเดินเงิน 3 สูตร Hybrid แม่นเป๊ะ (ตั้งค่าเอง)</h1>
+      <div class="desc" style="margin-bottom:12px;">
+        <b>Hybrid: เตือนก่อนขาดทุนเกินลิมิต<br>เดินต่อ/หยุดได้จริง<br>ไม้เดิมพันและยอดขาดทุนตรง 100% ทุกสูตร</b>
+      </div>
+      <!-- Accordion ตั้งค่าและเริ่มใหม่ -->
+      <div class="setting-accordion">
+        <div class="setting-head" onclick="toggleSettingCard()">
+          <span>🛠️ ตั้งค่าและเริ่มใหม่</span>
+          <span id="settingToggleIcon">▼</span>
+        </div>
+        <div id="settingBody" class="setting-body">
+          <form class="setting-card" onsubmit="event.preventDefault(); setSettings()">
+            <div class="setting-group">
+              <label>หน่วยเริ่มต้น</label>
+              <input id="unitInput" type="number" min="1" value="20" onchange="showMaxLoseInfo()" oninput="showMaxLoseInfo()"> <span style="margin-left:6px;">บาท</span>
+            </div>
+            <div class="setting-group">
+              <label>เป้ากำไร/ขอน</label>
+              <input id="profitGoalInput" type="number" min="1" value="100">
+            </div>
+            <div class="setting-group">
+              <label>ขาดทุน/ขอน</label>
+              <input id="lossLimitInput" type="number" min="1" value="500" onchange="showMaxLoseInfo()" oninput="showMaxLoseInfo()">
+            </div>
+            <button class="btn setting-btn" type="submit">✔️ ตั้งค่าและเริ่มใหม่</button>
+          </form>
+        </div>
+      </div>
+      <!-- เลือกสูตรเดินเงิน (mini tab) -->
+      <div class="money-tab-chooser">
+        <button id="tabOscar" class="mini-btn selected" onclick="showMoneyTab(0)">Oscar's Grind</button>
+        <button id="tabDalembert" class="mini-btn" onclick="showMoneyTab(1)">D'Alembert</button>
+        <button id="tabFibo" class="mini-btn" onclick="showMoneyTab(2)">Fibonacci</button>
+      </div>
+      <!-- Oscar’s Grind -->
+      <div id="moneyTab0" class="section money-tab-section">
+        <h2>Oscar’s Grind</h2>
+        <div class="desc" style="margin-bottom:6px;">
+          <b>หลักการ:</b> เริ่ม 1 หน่วย ถ้าแพ้ แทงเท่าเดิม, ถ้าชนะ เพิ่มเบท +1 หน่วย, หยุดเมื่อกำไรถึงเป้า หรือขาดทุนถึงลิมิต
+        </div>
+        <div class="info" id="oscarInfo"></div>
+        <table id="oscarTable">
+          <thead>
+            <tr>
+              <th>ไม้ที่</th>
+              <th>เดิมพัน (บาท)</th>
+              <th>ผล</th>
+              <th>กำไรสะสม</th>
+              <th>บันทึก</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn reset-btn" onclick="resetOscar()">รีเซ็ต Oscar's Grind</button>
+      </div>
+      <!-- D'Alembert -->
+      <div id="moneyTab1" class="section money-tab-section" style="display:none">
+        <h2>D’Alembert</h2>
+        <div class="desc" style="margin-bottom:6px;">
+          <b>หลักการ:</b> เริ่ม 1 หน่วย ถ้าแพ้ เพิ่มเบท +1 หน่วย, ถ้าชนะ ลดเบท -1 หน่วย (ต่ำสุด 1 หน่วย), หยุดเมื่อได้กำไรเป้า หรือขาดทุนถึงลิมิต
+        </div>
+        <div class="info" id="dalembertInfo"></div>
+        <table id="dalembertTable">
+          <thead>
+            <tr>
+              <th>ไม้ที่</th>
+              <th>เดิมพัน (บาท)</th>
+              <th>ผล</th>
+              <th>กำไรสะสม</th>
+              <th>บันทึก</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn reset-btn" onclick="resetDalembert()">รีเซ็ต D’Alembert</button>
+      </div>
+      <!-- Fibonacci -->
+      <div id="moneyTab2" class="section money-tab-section" style="display:none">
+        <h2>Fibonacci</h2>
+        <div class="desc" style="margin-bottom:6px;">
+          <b>หลักการ:</b> เริ่ม 1 หน่วย ถ้าแพ้ เดินเงินตามฟีโบนัชชี (1,1,2,3,5,...), ถ้าชนะ ถอยลำดับ -2, หยุดเมื่อได้กำไรเป้า หรือขาดทุนถึงลิมิต
+        </div>
+        <div class="info" id="fiboInfo"></div>
+        <table id="fiboTable">
+          <thead>
+            <tr>
+              <th>ไม้ที่</th>
+              <th>เดิมพัน (บาท)</th>
+              <th>ผล</th>
+              <th>กำไรสะสม</th>
+              <th>บันทึก</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn reset-btn" onclick="resetFibo()">รีเซ็ต Fibonacci</button>
+      </div>
+    </div>
+    <!-- Modal สำหรับสูตรเดินเงิน -->
+    <div id="modal" style="display:none"></div>
+  </div>
+  <script>
+    // Tab สลับหน้า
+    function showTab(idx) {
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('selected', i === idx);
+      });
+      document.querySelectorAll('.tab-content').forEach((tab, i) => {
+        tab.classList.toggle('active', i === idx);
+      });
     }
-    let mark = '';
-    if(pred !== '-' && results[i]) {
-      if(results[i] === pred) { mark = '<span class="cell-plus">+</span>'; correct++; }
-      else { mark = '<span class="cell-minus">-</span>'; }
-      total++;
+    // Mini-tab สูตรเดินเงิน
+    function showMoneyTab(idx) {
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('moneyTab' + i).style.display = (i === idx ? "" : "none");
+        document.getElementById(['tabOscar', 'tabDalembert', 'tabFibo'][i]).classList.toggle('selected', i === idx);
+      }
     }
-    let c = '';
-    if(results[i] === 'B') c = 'circle-b';
-    else if(results[i] === 'P') c = 'circle-p';
-    else c = 'circle-null';
-    let extra = (i === results.length-1) ? 'latest' : '';
-    html += `<tr>
-      <td>${i+1}</td>
-      <td><span class="${c} ${extra}">${results[i]||''}</span></td>
-      <td>${pred}</td>
-      <td>${mark}</td>
-    </tr>`;
-  }
-  let nextNo = results.length+1;
-  let nextPred = '-';
-  if(results.length >= N) {
-    let idx = (results.length-N) % N;
-    if(idx < 0) idx += N;
-    if (results[idx] !== undefined) nextPred = results[idx];
-  }
-  if(nextPred !== '-') {
-    html += `<tr class="row-next">
-      <td>${nextNo}</td>
-      <td><span class="circle-null">?</span></td>
-      <td class="predict-now"><b>${nextPred}</b></td>
-      <td></td>
-    </tr>`;
-  }
-  html += `<tr><td colspan=2>% แม่น</td>
-           <td colspan=2><b>${total?Math.round(100*correct/total):'-'}%</b></td></tr>`;
-  html += `</table>`;
-  document.getElementById('classicBox').innerHTML = html;
-  setTimeout(()=>{
-    let el = document.querySelector('.classic-scroll');
-    if(el) el.scrollTop = el.scrollHeight;
-  },50);
-}
-
-function analyzeSet(size) {
-  if(results.length < size*2) return null;
-  let correct=0, maxLose=0, loseNow=0;
-  let correctAnti=0, maxLoseAnti=0, loseNowAnti=0;
-  for(let i=size; i<results.length; i++) {
-    let pred = '-';
-    let idx = (i-size) % size;
-    if(idx < 0) idx += size;
-    if (results[idx] !== undefined) pred = results[idx];
-    let anti = pred==='B'?'P':'B';
-    if(results[i] === pred) { correct++; loseNow=0; } else { loseNow++; }
-    if(loseNow > maxLose) maxLose = loseNow;
-    if(results[i] === anti) { correctAnti++; loseNowAnti=0; } else { loseNowAnti++; }
-    if(loseNowAnti > maxLoseAnti) maxLoseAnti = loseNowAnti;
-  }
-  let total = (results.length-size);
-  let percent = total?Math.round(100*correct/total):0;
-  let percentAnti = total?Math.round(100*correctAnti/total):0;
-  return {
-    size, percent, percentAnti, maxLose, maxLoseAnti, total,
-    good: percent>=60 && maxLose<3,
-    bad: percentAnti>=60 && maxLoseAnti<3,
-    hot: (percent>=60 && maxLose<3)||(percentAnti>=60 && maxLoseAnti<3)
-  };
-}
-
-function renderSuggestTable() {
-  let suggestHTML = `<table>
-  <tr>
-    <th>ชุด</th>
-    <th>% แม่น (ตาม)</th>
-    <th>% แม่น (สวน)</th>
-    <th>แพ้ติดสูงสุด (ตาม)</th>
-    <th>แพ้ติดสูงสุด (สวน)</th>
-    <th>สถานะ</th>
-  </tr>`;
-  for(let size=1; size<=11; size++) {
-    let info = analyzeSet(size);
-    if(!info) {
-      suggestHTML += `<tr><td colspan="6" style="background:#f2faff;">กรอกผลเพิ่มเพื่อวิเคราะห์ชุด ${size} ตา</td></tr>`;
-      continue;
+    // Accordion Setting
+    let settingExpanded = true;
+    function toggleSettingCard() {
+      settingExpanded = !settingExpanded;
+      document.getElementById('settingBody').classList.toggle('hide', !settingExpanded);
+      document.getElementById('settingToggleIcon').textContent = settingExpanded ? '▼' : '▲';
     }
-    let tag = "";
-    if(info.good) tag = `<span class="tag tag-good">ชุดน่าตาม</span>`;
-    if(info.bad) tag = `<span class="tag tag-bad">ชุดน่าสวน</span>`;
-    if(info.hot) tag += `<span class="tag tag-hot">HOT!</span>`;
-    suggestHTML += `<tr${info.hot?' style="background:#fffbe2"':''}>
-      <td>${info.size}</td>
-      <td class="${info.percent>=60?'cell-plus':'cell-minus'}">${info.percent}%</td>
-      <td class="${info.percentAnti>=60?'cell-plus':'cell-minus'}">${info.percentAnti}%</td>
-      <td>${info.maxLose}</td>
-      <td>${info.maxLoseAnti}</td>
-      <td>${tag}</td>
-    </tr>`;
-  }
-  suggestHTML += `</table>`;
-  document.getElementById('sugTable').innerHTML = suggestHTML;
-}
 
-// ----------- LOGIC ใหม่ เลือกตาม HOT! ตามโหมด ------------
-function isPlayableHot() {
-  if (results.length < 10) return false; // <<< เพิ่มเช็คนี้
-  let hotCount = 0;
-  for (let size = 1; size <= 11; size++) {
-    let info = analyzeSet(size);
-    if (!info) continue;
-    if (info.hot) hotCount++;
-  }
-  if (mode === 1) return hotCount >= 1;
-  if (mode === 2) return hotCount >= 2;
-  if (mode === 3) return hotCount >= 3;
-  return false;
-}
-
-function bestSuggest() {
-  if (results.length < 10) return ""; // <<< เพิ่มเช็คนี้ (กันไว้ชัวร์)
-  if (!isPlayableHot()) return "";
-  let hotList = [];
-  for (let size = 1; size <= 11; size++) {
-    let info = analyzeSet(size);
-    if (!info) continue;
-    if (info.good) {
-      hotList.push({size, type: 'ตาม', side: getSide(size, false), percent: info.percent, lose: info.maxLose});
+    // สูตรบาคาร่า AI (เหมือนเดิม)
+    let results = [];
+    let userSelectedN = null;
+    let mode = 1;
+    window.onload = function(){
+      let sel = document.getElementById('patN');
+      for(let i=1; i<=11; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = i + ' ตา';
+        sel.appendChild(opt);
+      }
+      sel.addEventListener('change', function() {
+        userSelectedN = sel.value;
+        renderClassic();
+      });
+      renderAll();
+      renderOscar(); renderDalembert(); renderFibo(); showMaxLoseInfo();
+    };
+    function setMode(m) {
+      mode = m;
+      document.getElementById('mode1').classList.remove('selected');
+      document.getElementById('mode2').classList.remove('selected');
+      document.getElementById('mode3').classList.remove('selected');
+      document.getElementById('mode'+m).classList.add('selected');
+      userSelectedN = null;
+      renderAll();
     }
-    if (info.bad) {
-      hotList.push({size, type: 'สวน', side: getSide(size, true), percent: info.percentAnti, lose: info.maxLoseAnti});
+    function getPatternN() {
+      let sel = document.getElementById('patN');
+      let n = parseInt(sel.value);
+      return (isNaN(n) || n<1) ? 1 : n;
     }
-  }
-  hotList.sort((a, b) => b.percent - a.percent || a.lose - b.lose || a.size - b.size);
-  let best = hotList[0];
-  let betBtn = `<span class="${best.side == 'B' ? 'Bbet' : 'Pbet'}">${best.side}</span>`;
-  let detail = (best.type == 'ตาม')
-    ? `ถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`
-    : `สวนถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`;
-  autoSelectPatternN(best.size);
-  return `
-    <span class="good">แนะนำ: <b>ชุด${best.size}ตา</b> <u>${best.type == 'ตาม' ? 'ตามสูตร' : 'สวนสูตร'}</u> แทง${betBtn}</span><br>
-    <span class="mid" style="font-size:0.98em">${detail}</span>
-  `;
-}
-// ------------------------------------------------------------
-
-function getSide(size, anti) {
-  let side = '';
-  if(results.length >= size) {
-    let idx = (results.length - size) % size;
-    if(idx < 0) idx += size;
-    if (results[idx] !== undefined) {
-      if(anti) side = (results[idx] === 'B' ? 'P' : 'B');
-      else side = results[idx];
+    function isPlayable() {
+      if(results.length < 10) return false;
+      let count = 0;
+      for (let size = 1; size <= 11; size++) {
+        let info = analyzeSet(size);
+        if (!info) continue;
+        if ((info.percent >= 60 && info.maxLose < 3) || (info.percentAnti >= 60 && info.maxLoseAnti < 3)) count++;
+      }
+      return count >= 3;
     }
-  }
-  return side;
-}
-
-function renderBest() {
-  document.getElementById('sugBestTop').innerHTML = bestSuggest();
-}
-
-function renderAll() {
-  document.getElementById('qualityMsg').innerHTML = evaluateQuality();
-  renderBest();
-  renderClassic();
-  renderSuggestTable();
-}
-
-function autoSelectPatternN(n) {
-  let sel = document.getElementById('patN');
-  if(!userSelectedN || userSelectedN != n.toString()) {
-    if(sel.value != n) {
-      sel.value = n;
+    function isEvaluatable() {
+      return results.length >= 10;
+    }
+    function evaluateQuality() {
+      if (!isEvaluatable()) {
+        return `<div class="box-qual bad"><span class="icon">✏️</span> กรุณากรอกผลอย่างน้อย 10 ตาก่อนประเมินคุณภาพขอน</div>`;
+      }
+      if (isPlayable()) {
+        return `<div class="box-qual good"><span class="icon">✅</span> ขอนนี้น่าเล่น! <b>พบ Pattern ที่แม่นยำ</b><br>เลือกเล่นเฉพาะจังหวะที่ระบบแนะนำ</div>`;
+      } else {
+        return `<div class="box-qual bad"><span class="icon">⚠️</span> ขอนนี้ไม่น่าเล่น ยังไม่พบ Pattern ที่แม่นยำ<br>แนะนำให้ข้าม/เปลี่ยนห้อง หรือรอ Pattern ที่ชัดเจนก่อน</div>`;
+      }
+    }
+    function renderClassic() {
+      let N = getPatternN();
+      let html = `<table>
+        <tr>
+          <th>No.</th>
+          <th>ผลจริง</th>
+          <th>ตัวแทง<br>(ย้อนหลัง ${N} ตา)</th>
+          <th>+/–</th>
+        </tr>`;
+      let correct = 0, total = 0;
+      for(let i=0; i<results.length; i++) {
+        let pred = '-';
+        if(i >= N) {
+          let idx = (i-N) % N;
+          if(idx < 0) idx += N;
+          if (results[idx] !== undefined) pred = results[idx];
+        }
+        let mark = '';
+        if(pred !== '-' && results[i]) {
+          if(results[i] === pred) { mark = '<span class="cell-plus">+</span>'; correct++; }
+          else { mark = '<span class="cell-minus">-</span>'; }
+          total++;
+        }
+        let c = '';
+        if(results[i] === 'B') c = 'circle-b';
+        else if(results[i] === 'P') c = 'circle-p';
+        else c = 'circle-null';
+        let extra = (i === results.length-1) ? 'latest' : '';
+        html += `<tr>
+          <td>${i+1}</td>
+          <td><span class="${c} ${extra}">${results[i]||''}</span></td>
+          <td>${pred}</td>
+          <td>${mark}</td>
+        </tr>`;
+      }
+      let nextNo = results.length+1;
+      let nextPred = '-';
+      if(results.length >= N) {
+        let idx = (results.length-N) % N;
+        if(idx < 0) idx += N;
+        if (results[idx] !== undefined) nextPred = results[idx];
+      }
+      if(nextPred !== '-') {
+        html += `<tr class="row-next">
+          <td>${nextNo}</td>
+          <td><span class="circle-null">?</span></td>
+          <td class="predict-now"><b>${nextPred}</b></td>
+          <td></td>
+        </tr>`;
+      }
+      html += `<tr><td colspan=2>% แม่น</td>
+               <td colspan=2><b>${total?Math.round(100*correct/total):'-'}%</b></td></tr>`;
+      html += `</table>`;
+      document.getElementById('classicBox').innerHTML = html;
+      setTimeout(()=>{
+        let el = document.querySelector('.classic-scroll');
+        if(el) el.scrollTop = el.scrollHeight;
+      },50);
+    }
+    function analyzeSet(size) {
+      if(results.length < size*2) return null;
+      let correct=0, maxLose=0, loseNow=0;
+      let correctAnti=0, maxLoseAnti=0, loseNowAnti=0;
+      for(let i=size; i<results.length; i++) {
+        let pred = '-';
+        let idx = (i-size) % size;
+        if(idx < 0) idx += size;
+        if (results[idx] !== undefined) pred = results[idx];
+        let anti = pred==='B'?'P':'B';
+        if(results[i] === pred) { correct++; loseNow=0; } else { loseNow++; }
+        if(loseNow > maxLose) maxLose = loseNow;
+        if(results[i] === anti) { correctAnti++; loseNowAnti=0; } else { loseNowAnti++; }
+        if(loseNowAnti > maxLoseAnti) maxLoseAnti = loseNowAnti;
+      }
+      let total = (results.length-size);
+      let percent = total?Math.round(100*correct/total):0;
+      let percentAnti = total?Math.round(100*correctAnti/total):0;
+      return {
+        size, percent, percentAnti, maxLose, maxLoseAnti, total,
+        good: percent>=60 && maxLose<3,
+        bad: percentAnti>=60 && maxLoseAnti<3,
+        hot: (percent>=60 && maxLose<3)||(percentAnti>=60 && maxLoseAnti<3)
+      };
+    }
+    function renderSuggestTable() {
+      let suggestHTML = `<table>
+      <tr>
+        <th>ชุด</th>
+        <th>% แม่น (ตาม)</th>
+        <th>% แม่น (สวน)</th>
+        <th>แพ้ติดสูงสุด (ตาม)</th>
+        <th>แพ้ติดสูงสุด (สวน)</th>
+        <th>สถานะ</th>
+      </tr>`;
+      for(let size=1; size<=11; size++) {
+        let info = analyzeSet(size);
+        if(!info) {
+          suggestHTML += `<tr><td colspan="6" style="background:#f2faff;">กรอกผลเพิ่มเพื่อวิเคราะห์ชุด ${size} ตา</td></tr>`;
+          continue;
+        }
+        let tag = "";
+        if(info.good) tag = `<span class="tag tag-good">ชุดน่าตาม</span>`;
+        if(info.bad) tag = `<span class="tag tag-bad">ชุดน่าสวน</span>`;
+        if(info.hot) tag += `<span class="tag tag-hot">HOT!</span>`;
+        suggestHTML += `<tr${info.hot?' style="background:#fffbe2"':''}>
+          <td>${info.size}</td>
+          <td class="${info.percent>=60?'cell-plus':'cell-minus'}">${info.percent}%</td>
+          <td class="${info.percentAnti>=60?'cell-plus':'cell-minus'}">${info.percentAnti}%</td>
+          <td>${info.maxLose}</td>
+          <td>${info.maxLoseAnti}</td>
+          <td>${tag}</td>
+        </tr>`;
+      }
+      suggestHTML += `</table>`;
+      document.getElementById('sugTable').innerHTML = suggestHTML;
+    }
+    function isPlayableHot() {
+      if (results.length < 10) return false;
+      let hotCount = 0;
+      for (let size = 1; size <= 11; size++) {
+        let info = analyzeSet(size);
+        if (!info) continue;
+        if (info.hot) hotCount++;
+      }
+      if (mode === 1) return hotCount >= 1;
+      if (mode === 2) return hotCount >= 2;
+      if (mode === 3) return hotCount >= 3;
+      return false;
+    }
+    function bestSuggest() {
+      if (results.length < 10) return "";
+      if (!isPlayableHot()) return "";
+      let hotList = [];
+      for (let size = 1; size <= 11; size++) {
+        let info = analyzeSet(size);
+        if (!info) continue;
+        if (info.good) {
+          hotList.push({size, type: 'ตาม', side: getSide(size, false), percent: info.percent, lose: info.maxLose});
+        }
+        if (info.bad) {
+          hotList.push({size, type: 'สวน', side: getSide(size, true), percent: info.percentAnti, lose: info.maxLoseAnti});
+        }
+      }
+      hotList.sort((a, b) => b.percent - a.percent || a.lose - b.lose || a.size - b.size);
+      let best = hotList[0];
+      let betBtn = `<span class="${best.side == 'B' ? 'Bbet' : 'Pbet'}">${best.side}</span>`;
+      let detail = (best.type == 'ตาม')
+        ? `ถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`
+        : `สวนถูก ${best.percent}% / แพ้ติดสูงสุด ${best.lose}`;
+      autoSelectPatternN(best.size);
+      return `
+        <span class="good">แนะนำ: <b>ชุด${best.size}ตา</b> <u>${best.type == 'ตาม' ? 'ตามสูตร' : 'สวนสูตร'}</u> แทง${betBtn}</span><br>
+        <span class="mid" style="font-size:0.98em">${detail}</span>
+      `;
+    }
+    function getSide(size, anti) {
+      let side = '';
+      if(results.length >= size) {
+        let idx = (results.length - size) % size;
+        if(idx < 0) idx += size;
+        if (results[idx] !== undefined) {
+          if(anti) side = (results[idx] === 'B' ? 'P' : 'B');
+          else side = results[idx];
+        }
+      }
+      return side;
+    }
+    function renderBest() {
+      document.getElementById('sugBestTop').innerHTML = bestSuggest();
+    }
+    function renderAll() {
+      document.getElementById('qualityMsg').innerHTML = evaluateQuality();
+      renderBest();
       renderClassic();
+      renderSuggestTable();
     }
-    userSelectedN = null;
-  }
-}
-
-function addResult(val) { results.push(val); userSelectedN = null; renderAll(); }
-function removeLast() { results.pop(); userSelectedN = null; renderAll(); }
-function resetAll() { if(confirm('ล้างข้อมูล?')){results=[]; userSelectedN = null; renderAll();} }
-</script>
+    function autoSelectPatternN(n) {
+      let sel = document.getElementById('patN');
+      if(!userSelectedN || userSelectedN != n.toString()) {
+        if(sel.value != n) {
+          sel.value = n;
+          renderClassic();
+        }
+        userSelectedN = null;
+      }
+    }
+    function addResult(val) { results.push(val); userSelectedN = null; renderAll(); }
+    function removeLast() { results.pop(); userSelectedN = null; renderAll(); }
+    function resetAll() { if(confirm('ล้างข้อมูล?')){results=[]; userSelectedN = null; renderAll();} }
+    // สูตรเดินเงิน Hybrid
+    function calcMaxLoseOscar(unit, limit) { return Math.floor(limit / unit);}
+    function calcMaxLoseDalembert(unit, limit) {
+      let sum = 0, n = 0;
+      while (sum < limit) { n++; sum += n * unit; }
+      return n-1;
+    }
+    function calcMaxLoseFibo(unit, limit) {
+      let fiboSeq = [1,1,2,3,5,8,13,21,34,55,89,144,233];
+      let sum = 0, n = 0;
+      for (let i = 0; i < fiboSeq.length; i++) {
+        sum += fiboSeq[i]*unit; if (sum > limit) return n; n++;
+      } return n;
+    }
+    function showMaxLoseInfo() {
+      let unit = Math.max(1, parseInt(document.getElementById('unitInput').value)||1);
+      let limit = Math.max(1, parseInt(document.getElementById('lossLimitInput').value)||1);
+      document.getElementById('oscarInfo').innerHTML = `ถ้าแพ้ติดกัน <b>${calcMaxLoseOscar(unit, limit)}</b> ไม้จะขาดทุนครบลิมิต (${limit} บาท)`;
+      document.getElementById('dalembertInfo').innerHTML = `ถ้าแพ้ติดกัน <b>${calcMaxLoseDalembert(unit, limit)}</b> ไม้จะขาดทุนครบลิมิต (${limit} บาท)`;
+      document.getElementById('fiboInfo').innerHTML = `ถ้าแพ้ติดกัน <b>${calcMaxLoseFibo(unit, limit)}</b> ไม้จะขาดทุนครบลิมิต (${limit} บาท)`;
+    }
+    let UNIT = 20;
+    let PROFIT_GOAL = 100;
+    let LOSS_LIMIT = 500;
+    function setSettings() {
+      let u = parseInt(document.getElementById('unitInput').value) || 1;
+      let p = parseInt(document.getElementById('profitGoalInput').value) || 1;
+      let l = parseInt(document.getElementById('lossLimitInput').value) || 1;
+      UNIT = Math.max(1, u);
+      PROFIT_GOAL = Math.max(1, p);
+      LOSS_LIMIT = Math.max(1, l);
+      resetOscar(); resetDalembert(); resetFibo();
+      showMaxLoseInfo();
+      showModal("✔️ ตั้งค่าหลักสำเร็จ", "ตั้งค่าใหม่เรียบร้อยแล้ว<br>เริ่มเดินเงินได้เลย!");
+    }
+    function showModal(title, content) {
+      document.getElementById('modal').innerHTML =
+        `<div class="modal-bg" onclick="closeModal(event)">
+          <div class="modal-box" onclick="event.stopPropagation()">
+            <h3>${title}</h3>
+            <div style="margin-bottom:6px;">${content}</div>
+            <button class="btn" onclick="closeModal()">ปิดหน้าต่าง</button>
+          </div>
+        </div>`;
+      document.getElementById('modal').style.display = "block";
+    }
+    function showConfirm(title, content, onOk, onCancel) {
+      document.getElementById('modal').innerHTML =
+        `<div class="modal-bg" onclick="closeModal(event)">
+          <div class="modal-box" onclick="event.stopPropagation()">
+            <h3>${title}</h3>
+            <div style="margin-bottom:9px;">${content}</div>
+            <button class="btn btn-confirm" style="margin-right:8px;" onclick="closeModal(); (${onOk||''})();">เดินต่อ</button>
+            <button class="btn" onclick="closeModal(); (${onCancel||''})();">หยุด</button>
+          </div>
+        </div>`;
+      document.getElementById('modal').style.display = "block";
+    }
+    function closeModal(e) { document.getElementById('modal').style.display = "none"; }
+    // Oscar’s Grind Hybrid
+    let oscar = [{ bet: UNIT, profit: 0 }];
+    function renderOscar() {
+      const tbody = document.querySelector("#oscarTable tbody");
+      tbody.innerHTML = "";
+      let profit = 0, bet = UNIT;
+      oscar.forEach((item, i) => {
+        profit = item.profit;
+        bet = item.bet;
+        let winBtn = `<button class="btn btn-win" onclick="oscarResult(${i},1)">ชนะ</button>`;
+        let loseBtn = `<button class="btn btn-lose" onclick="oscarResult(${i},0)">แพ้</button>`;
+        let profitClass = profit >= 0 ? 'profit' : 'loss';
+        tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${bet}</td>
+            <td class="actions">${winBtn} ${loseBtn}</td>
+            <td class="${profitClass}">${profit}</td>
+            <td></td>
+          </tr>
+        `;
+      });
+    }
+    function oscarResult(i, win) {
+      let bet = oscar[i].bet;
+      let profit = oscar[i].profit + (win ? bet : -bet);
+      let nextBet = bet;
+      if (win) { if (profit < PROFIT_GOAL) nextBet += UNIT; }
+      let willExceed = false;
+      if (!win) {
+        let nextProfitIfLose = profit - bet;
+        if (Math.abs(nextProfitIfLose) + bet > LOSS_LIMIT) { willExceed = true; }
+      }
+      if (willExceed) {
+        showConfirm("⚠️ เตือน!", 
+          `ถ้าเดินเงินไม้ถัดไป (<b>${bet}</b> บาท) แล้วแพ้อีก ขาดทุนจะเกินลิมิต (${LOSS_LIMIT} บาท)<br>ต้องการเดินต่อหรือหยุด?`,
+          () => { oscar.push({ bet: nextBet, profit }); renderOscar(); }, // เดินต่อ
+          () => {}
+        );
+        return;
+      }
+      if (profit >= PROFIT_GOAL) {
+        showModal("🎉 ถึงเป้ากำไร!", `คุณมีกำไรสะสม <b>${profit}</b> บาท<br>เป้ากำไรที่ตั้งไว้ <b>${PROFIT_GOAL}</b> บาท`);
+        return;
+      }
+      if (Math.abs(profit) >= LOSS_LIMIT) {
+        showModal("⚠️ ขาดทุนถึงลิมิต", `คุณขาดทุนเกินเป้าที่ตั้งไว้ (${LOSS_LIMIT} บาท)`);
+        return;
+      }
+      oscar.push({ bet: nextBet, profit });
+      renderOscar();
+    }
+    function resetOscar() { oscar = [{ bet: UNIT, profit: 0 }]; renderOscar(); }
+    // D'Alembert Hybrid
+    let dalembert = [{ bet: UNIT, profit: 0, level: 1 }];
+    function renderDalembert() {
+      const tbody = document.querySelector("#dalembertTable tbody");
+      tbody.innerHTML = "";
+      dalembert.forEach((item, i) => {
+        let profitClass = item.profit >= 0 ? 'profit' : 'loss';
+        let winBtn = `<button class="btn btn-win" onclick="dalembertResult(${i},1)">ชนะ</button>`;
+        let loseBtn = `<button class="btn btn-lose" onclick="dalembertResult(${i},0)">แพ้</button>`;
+        tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${item.bet}</td>
+            <td class="actions">${winBtn} ${loseBtn}</td>
+            <td class="${profitClass}">${item.profit}</td>
+            <td></td>
+          </tr>
+        `;
+      });
+    }
+    function dalembertResult(i, win) {
+      let level = dalembert[i].level;
+      let bet = dalembert[i].bet;
+      let profit = dalembert[i].profit + (win ? bet : -bet);
+      let nextLevel = win ? Math.max(1, level - 1) : level + 1;
+      let nextBet = UNIT * nextLevel;
+      let willExceed = false;
+      if (!win) {
+        let nextProfitIfLose = profit - nextBet;
+        if (Math.abs(nextProfitIfLose) > LOSS_LIMIT) { willExceed = true; }
+      }
+      if (willExceed) {
+        showConfirm("⚠️ เตือน!", 
+          `ถ้าเดินเงินไม้ถัดไป (<b>${nextBet}</b> บาท) แล้วแพ้อีก ขาดทุนจะเกินลิมิต (${LOSS_LIMIT} บาท)<br>ต้องการเดินต่อหรือหยุด?`,
+          () => { dalembert.push({ bet: nextBet, profit, level: nextLevel }); renderDalembert(); },
+          () => {}
+        );
+        return;
+      }
+      if (profit >= PROFIT_GOAL) {
+        showModal("🎉 ถึงเป้ากำไร!", `คุณมีกำไรสะสม <b>${profit}</b> บาท<br>เป้ากำไรที่ตั้งไว้ <b>${PROFIT_GOAL}</b> บาท`);
+        return;
+      }
+      if (Math.abs(profit) >= LOSS_LIMIT) {
+        showModal("⚠️ ขาดทุนถึงลิมิต", `คุณขาดทุนเกินเป้าที่ตั้งไว้ (${LOSS_LIMIT} บาท)`);
+        return;
+      }
+      dalembert.push({ bet: nextBet, profit, level: nextLevel });
+      renderDalembert();
+    }
+    function resetDalembert() { dalembert = [{ bet: UNIT, profit: 0, level: 1 }]; renderDalembert(); }
+    // Fibonacci Hybrid
+    let fiboSeq = [1, 1, 2, 3, 5, 8, 13, 21, 34];
+    let fibo = [{ idx: 0, bet: UNIT * 1, profit: 0 }];
+    function renderFibo() {
+      const tbody = document.querySelector("#fiboTable tbody");
+      tbody.innerHTML = "";
+      fibo.forEach((item, i) => {
+        let profitClass = item.profit >= 0 ? 'profit' : 'loss';
+        let winBtn = `<button class="btn btn-win" onclick="fiboResult(${i},1)">ชนะ</button>`;
+        let loseBtn = `<button class="btn btn-lose" onclick="fiboResult(${i},0)">แพ้</button>`;
+        tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${item.bet}</td>
+            <td class="actions">${winBtn} ${loseBtn}</td>
+            <td class="${profitClass}">${item.profit}</td>
+            <td></td>
+          </tr>
+        `;
+      });
+    }
+    function fiboResult(i, win) {
+      let idx = fibo[i].idx;
+      let bet = fibo[i].bet;
+      let profit = fibo[i].profit + (win ? bet : -bet);
+      let nextIdx = idx;
+      if (win) nextIdx = Math.max(0, idx - 2);
+      else nextIdx = idx + 1;
+      if (nextIdx >= fiboSeq.length) nextIdx = fiboSeq.length - 1;
+      let nextBet = UNIT * fiboSeq[nextIdx];
+      let willExceed = false;
+      if (!win) {
+        let nextProfitIfLose = profit - nextBet;
+        if (Math.abs(nextProfitIfLose) > LOSS_LIMIT) { willExceed = true; }
+      }
+      if (willExceed) {
+        showConfirm("⚠️ เตือน!", 
+          `ถ้าเดินเงินไม้ถัดไป (<b>${nextBet}</b> บาท) แล้วแพ้อีก ขาดทุนจะเกินลิมิต (${LOSS_LIMIT} บาท)<br>ต้องการเดินต่อหรือหยุด?`,
+          () => { fibo.push({ idx: nextIdx, bet: nextBet, profit }); renderFibo(); },
+          () => {}
+        );
+        return;
+      }
+      if (profit >= PROFIT_GOAL) {
+        showModal("🎉 ถึงเป้ากำไร!", `คุณมีกำไรสะสม <b>${profit}</b> บาท<br>เป้ากำไรที่ตั้งไว้ <b>${PROFIT_GOAL}</b> บาท`);
+        return;
+      }
+      if (Math.abs(profit) >= LOSS_LIMIT) {
+        showModal("⚠️ ขาดทุนถึงลิมิต", `คุณขาดทุนเกินเป้าที่ตั้งไว้ (${LOSS_LIMIT} บาท)`);
+        return;
+      }
+      fibo.push({ idx: nextIdx, bet: nextBet, profit });
+      renderFibo();
+    }
+    function resetFibo() { fibo = [{ idx: 0, bet: UNIT * 1, profit: 0 }]; renderFibo(); }
+  </script>
 </body>
 </html>
